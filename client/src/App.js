@@ -3,12 +3,12 @@ import styled, { ThemeProvider } from "styled-components";
 import theme from "styled-theming";
 import IssueSubmission from "@/components/issue-submission/index.jsx";
 import BugList from "@/components/bug-list/index.jsx";
-import { Radio } from "semantic-ui-react";
+import { Checkbox } from "semantic-ui-react";
 import "semantic-ui-css/semantic.min.css";
 import "./App.css";
 
 const backgroundColor = theme("mode", {
-  light: "#fefefe",
+  light: "#fcfcfc",
   dark: "#282c34",
 });
 
@@ -27,8 +27,9 @@ function App() {
   return (
     <ThemeProvider theme={{ mode: mode }}>
       <Application className="App">
-        <Radio
+        <Checkbox
           slider
+          value={mode}
           onChange={() => {
             const newMode = mode === "light" ? "dark" : "light";
             localStorage.setItem("mode", newMode);
@@ -36,7 +37,7 @@ function App() {
           }}
         />
         {showBugList ? <BugList /> : <IssueSubmission />}
-        <Radio
+        <Checkbox
           slider
           onChange={(e, { value }) => {
             setShowBugList(!showBugList);

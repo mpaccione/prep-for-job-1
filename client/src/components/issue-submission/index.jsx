@@ -13,25 +13,25 @@ const severityOptions = [
   {
     key: 0,
     text: "Low",
-    value: "Low",
+    value: "0",
     label: { color: "green", empty: true, circular: true },
   },
   {
     key: 1,
     text: "Medium",
-    value: "Medium",
+    value: "1",
     label: { color: "yellow", empty: true, circular: true },
   },
   {
     key: 2,
     text: "High",
-    value: "High",
+    value: "2",
     label: { color: "orange", empty: true, circular: true },
   },
   {
     key: 3,
     text: "Critical",
-    value: "Critical",
+    value: "3",
     label: { color: "red", empty: true, circular: true },
   },
 ];
