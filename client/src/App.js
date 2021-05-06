@@ -36,7 +36,7 @@ function App() {
             setMode(newMode);
           }}
         />
-        {showBugList ? <BugList /> : <IssueSubmission />}
+        {showBugList ? <BugList /> : <IssueSubmission mode={mode} />}
         <Checkbox
           slider
           onChange={(e, { value }) => {
