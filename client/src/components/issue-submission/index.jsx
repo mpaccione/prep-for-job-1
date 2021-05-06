@@ -8,21 +8,37 @@ import {
   Button,
   TextArea,
 } from "semantic-ui-react";
-import styled from "styled-components"
 
 const severityOptions = [
-  { key: 0, text: "Low", value: 0 },
-  { key: 1, text: "Medium", value: 1 },
-  { key: 2, text: "High", value: 2 },
-  { key: 3, text: "Critical", value: 3 },
+  {
+    key: 0,
+    text: "Low",
+    value: "Low",
+    label: { color: "green", empty: true, circular: true },
+  },
+  {
+    key: 1,
+    text: "Medium",
+    value: "Medium",
+    label: { color: "yellow", empty: true, circular: true },
+  },
+  {
+    key: 2,
+    text: "High",
+    value: "High",
+    label: { color: "orange", empty: true, circular: true },
+  },
+  {
+    key: 3,
+    text: "Critical",
+    value: "Critical",
+    label: { color: "red", empty: true, circular: true },
+  },
 ];
 
 const submitIssue = async () => {
-    try {
-
-    } catch (err) {
-
-    }
+  try {
+  } catch (err) {}
 };
 
 const IssueSubmission = () => {
@@ -36,6 +52,8 @@ const IssueSubmission = () => {
       <Form>
         <Form.Field>
           <Dropdown
+            floating
+            direction="right"
             value={severity}
             placeholder="Select Severity Level"
             options={severityOptions}
