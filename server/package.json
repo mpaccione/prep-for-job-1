@@ -1,0 +1,19 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "amqp-stats": "^0.0.14",
+    "bcrypt": "^5.0.1",
+    "express": "^4.17.1",
+    "mongodb": "^3.6.6",
+    "amqplib": "^0.7.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Michael Paccione",
+  "license": "ISC"
+}
