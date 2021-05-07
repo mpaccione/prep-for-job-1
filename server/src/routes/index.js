@@ -1,7 +1,8 @@
 import express from "express";
-// import { submission } from "../controllers/submissionController.js";
+import { submission } from "../controllers/issue.js";
 
 const app = express();
+const BASE_PATH = "/api/v1";
 
 // app.use('/auth', authRoutes )
 app.use(function (req, res, next) {
@@ -23,6 +24,6 @@ app.use(express.json());
 app.use(express.urlencoded());
 
 // SUBMISSION
-// app.post("/api/submission", submission);
+app.post(BASE_PATH + "/submission", submission);
 
 export default app;

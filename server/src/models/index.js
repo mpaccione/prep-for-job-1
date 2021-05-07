@@ -1,15 +1,17 @@
 import Joi from "joi"
 
 const issueSchema = Joi.object({
-    // TODO: define schema
+    createdDate: Joi.date().iso(),
+    title: Joi.string(),
+    description: Joi.string(),
+    severity: Joi.number().positive()
 })
 
-const issueValidator = async (postObj) => {
+export const issueValidator = async (postObj) => {
     try {
         return await issueSchema.validateAsync(postObj)
     } catch (err) {
         console.error(err)
+        return false
     }
 }
-
-export default issueValidator  
