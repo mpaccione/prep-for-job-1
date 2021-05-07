@@ -39,7 +39,7 @@ const TableRow = ({ d, setComplete }) => (
     <CustomCell>
       <Checkbox
         slider
-        value={d.complete}
+        checked={d.complete}
         onChange={(e, { value }) => {
           setComplete({ id: d.id, complete: !d.complete });
         }}
