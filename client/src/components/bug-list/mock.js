@@ -7,7 +7,7 @@ function randomDate(start, end) {
 }
 
 function formatDate(date){
-    return moment(date).format("MM-DD-YY")
+    return moment(randomDate(new Date(2021, 4, 1), date)).format("MM-DD-YY")
 }
 
 export const MOCK_BUG_DATA = [

@@ -36,15 +36,25 @@ const severityOptions = [
   },
 ];
 
-const submitIssue = async () => {
-  try {
-  } catch (err) {}
-};
-
 const IssueSubmission = () => {
   const [severity, setSeverity] = useState();
   const [title, setTitle] = useState();
   const [description, setDescription] = useState();
+
+  const submitIssue = async () => {
+    try {
+      const submission = await fetch("http://localhost:8082/submission", {
+        method: "post",
+        body: { createdAt: new Date().toISOString(), title, severity, description },
+      });
+      const result = await submission.json()
+      // TODO: Add global state with context API or a parent wrapper and useState to update result list
+      alert('Successful Submission')
+    } catch (err) {
+        alert(`Error: ${err}`)
+        console.error(err)
+    }
+  };
 
   return (
     <Segment>
