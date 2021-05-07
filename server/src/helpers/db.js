@@ -34,9 +34,13 @@ export const dbConnTest = () => {
   dbReq((db, client) => {
     console.log("MongoDB connection successful");
     const listDatabases = async () => {
-      const dbList = await db.admin().listDatabases();
-      console.log("Databases:");
-      dbList.databases.forEach((db) => console.log(` - ${db.name}`));
+      try {
+        const dbList = await db.admin().listDatabases();
+        console.log("Databases:");
+        dbList.databases.forEach((db) => console.log(` - ${db.name}`));
+      } catch (err) {
+        console.error(err);
+      }
     };
     console.log(listDatabases());
     client.close();

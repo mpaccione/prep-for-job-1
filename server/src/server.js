@@ -2,7 +2,7 @@ import cors from 'cors'
 import morgan from 'morgan'
 import dotenv from 'dotenv'
 import app from './routes/index.js'
-import { dbConnTest } from "../helpers/db.js";
+import { dbConnTest } from "./helpers/db.js";
 
 dotenv.config()
 dbConnTest()
