@@ -8,6 +8,7 @@ import {
   Button,
   TextArea,
 } from "semantic-ui-react";
+import { API } from "@/constants.js";
 
 const severityOptions = [
   {
@@ -43,16 +44,26 @@ const IssueSubmission = () => {
 
   const submitIssue = async () => {
     try {
-      const submission = await fetch("http://localhost:8082/submission", {
-        method: "post",
-        body: { createdAt: new Date().toISOString(), title, severity, description },
+      const submission = await fetch(`${API}submission`, {
+        method: "POST",
+        body: JSON.stringify({
+          createdAt: new Date().toISOString(),
+          title,
+          severity,
+          description,
+        }),
+        headers: { "Content-Type": "application/json" },
       });
-      const result = await submission.json()
-      // TODO: Add global state with context API or a parent wrapper and useState to update result list
-      alert('Successful Submission')
+      const result = await submission.json();
+      if (result) {
+        setSeverity();
+        setTitle();
+        setDescription();
+        alert("Successful Submission");
+      }
     } catch (err) {
-        alert(`Error: ${err}`)
-        console.error(err)
+      alert(`Error: ${err}`);
+      console.error(err);
     }
   };
 

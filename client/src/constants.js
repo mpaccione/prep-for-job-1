@@ -4,3 +4,5 @@ export const COLORS = [
   { light: "orange", dark: "darkorange" },
   { light: "lightcoral !important", dark: "darkred" },
 ];
+
+export const API = "http://localhost:8082/api/v1/"

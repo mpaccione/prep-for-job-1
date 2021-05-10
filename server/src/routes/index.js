@@ -1,5 +1,5 @@
 import express from "express";
-import { submission } from "../controllers/issue.js";
+import { submission, getIssues, updateIssue } from "../controllers/issue.js";
 
 const app = express();
 const BASE_PATH = "/api/v1";
@@ -25,5 +25,7 @@ app.use(express.urlencoded());
 
 // SUBMISSION
 app.post(BASE_PATH + "/submission", submission);
+app.get(BASE_PATH + "/issues", getIssues);
+app.post(BASE_PATH + "/update", updateIssue);
 
 export default app;

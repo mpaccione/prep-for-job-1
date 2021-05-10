@@ -13,7 +13,7 @@ function formatDate(date){
 export const MOCK_BUG_DATA = [
   {
     id: 0,  
-    createdDate: formatDate(new Date()),
+    createdAt: formatDate(new Date()),
     title: "Mobile not responsive",
     description:
       "Some layouts issues on contact and about pages. Improper alignments and padding. See design ref.",
@@ -22,7 +22,7 @@ export const MOCK_BUG_DATA = [
   },
   { 
     id: 1,  
-    createdDate: formatDate(new Date()),
+    createdAt: formatDate(new Date()),
     title: "Images need optimizing for faster load",
     description:
       "Long load times because hero banner is not using media queries for loading correct version.",
@@ -31,7 +31,7 @@ export const MOCK_BUG_DATA = [
   },
   {
     id: 2,  
-    createdDate: formatDate(new Date()),
+    createdAt: formatDate(new Date()),
     title: "Mail server sometimes unresponsive",
     description:
       "Timeout issues with mail server reliability.",
@@ -40,7 +40,7 @@ export const MOCK_BUG_DATA = [
   },
   {
     id: 3,  
-    createdDate: formatDate(new Date()),
+    createdAt: formatDate(new Date()),
     title: "Billing API down",
     description:
       "Unable to accept payments to the payment processor through the backend API.",
@@ -49,7 +49,7 @@ export const MOCK_BUG_DATA = [
   },
   {
     id: 4,  
-    createdDate: formatDate(new Date()),
+    createdAt: formatDate(new Date()),
     title: "Need to move assets to CDN",
     description:
       "Assets need to be moved to a CDN for faster parallel loading.",

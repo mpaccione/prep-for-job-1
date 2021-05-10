@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import theme from "styled-theming";
 import PropTypes from "prop-types";
 import { Segment, Checkbox, Table } from "semantic-ui-react";
 import { MOCK_BUG_DATA } from "./mock.js";
-import { COLORS } from "@/constants.js"
+import { COLORS, API } from "@/constants.js";
 
 const backgroundColor = theme.variants("mode", "variant", {
   default: { light: "#fcfcfc", dark: "#282c34" },
@@ -33,7 +33,7 @@ CustomRow.propTypes = {
 
 const TableRow = ({ d, setComplete }) => (
   <CustomRow variant={d.complete ? "default" : d.severity}>
-    <CustomCell>{d.createdDate}</CustomCell>
+    <CustomCell>{d.createdAt}</CustomCell>
     <CustomCell>{d.title}</CustomCell>
     <CustomCell>{d.description}</CustomCell>
     <CustomCell>
@@ -55,12 +55,47 @@ const BugList = () => {
     })
   );
 
-  const setComplete = ({ id, complete }) => {
+  const getIssues = async () => {
+    try {
+      const issues = await fetch(`${API}issues`, {
+        method: "GET",
+        headers: { "Content-Type": "application/json" },
+      });
+      const result = await issues.json();
+      setBugData(
+        result.sort((a, b) => {
+          return parseInt(b.severity) - parseInt(a.severity);
+        })
+      );
+    } catch (err) {
+      alert(`Error: ${err}`);
+      console.error(err);
+    }
+  };
+
+  useEffect(() => {
+    getIssues();
+  }, []);
+
+  const setComplete = async ({ id, complete }) => {
     let newBugData = JSON.parse(JSON.stringify(bugData));
     const index = newBugData.findIndex((d) => d.id === id);
     if (index > -1) {
-      newBugData[index].complete = complete;
-      setBugData(newBugData);
+      try {
+        const update = await fetch(`${API}update`, {
+          method: "POST",
+          body: JSON.stringify({ id: id, complete: complete }),
+          headers: { "Content-Type": "application/json" },
+        });
+        const result = await update.json();
+        if (result) {
+          newBugData[index].complete = complete;
+          setBugData(newBugData);
+        }
+      } catch (err) {
+        alert(`Error: ${err}`);
+        console.error(err);
+      }
     } else {
       alert("Bug ID not found?");
     }

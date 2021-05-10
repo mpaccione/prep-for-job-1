@@ -46,7 +46,21 @@ export const getCollection = (db, client, collectionName, res) => {
 };
 
 export const insertOne = (db, client, collectionName, postObj, res) => {
-    db.collection(collectionName).insertOne(postObj, async(err, result) => {
-        err ? res.status(500).send(err) : getCollection(db, client, collectionName, res)
-    })
-}
+  db.collection(collectionName).insertOne(postObj, async (err, result) => {
+    err
+      ? res.status(500).send(err)
+      : getCollection(db, client, collectionName, res);
+  });
+};
+
+export const updateOne = (db, client, collectionName, postObj, res) => {
+  db.collection(collectionName).update(
+    { _id: postObj.id },
+    { $set: { complete: postObj.complete } },
+    async (err, result) => {
+      err
+        ? res.status(500).send(err)
+        : getCollection(db, client, collectionName, res);
+    }
+  );
+};
